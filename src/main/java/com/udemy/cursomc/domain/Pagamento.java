@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.udemy.cursomc.domain.enums.EstadoPagamento;
 
 @Entity
@@ -19,53 +20,48 @@ public abstract class Pagamento implements Serializable {
 	
 	@Id
 	private Integer id;
-	private Integer estadoPagamento;
+	private Integer estado;
 	
+	@JsonBackReference
 	@OneToOne
-	@JoinColumn(name =  "pedido_id")
+	@JoinColumn(name = "pedido_id")
 	@MapsId
 	private Pedido pedido;
 	
-	public Pagamento() {
-	}
-	
-	
-	public Pagamento(Integer id, EstadoPagamento estadoPagamento, Pedido pedido) {
+	public Pagamento(Integer id, EstadoPagamento estado, Pedido pedido) {
 		super();
 		this.id = id;
-		this.estadoPagamento = estadoPagamento.getCod();
+		this.estado = estado.getCod();
 		this.pedido = pedido;
 	}
 
+	public Pagamento() {
+	}
 
 	public Integer getId() {
 		return id;
 	}
 
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-
-	public EstadoPagamento getEstadoPagamento() {
-		return EstadoPagamento.toEnum(estadoPagamento);
+	public EstadoPagamento getEstado() {
+		return EstadoPagamento.toEnum(estado);
 	}
 
-
-	public void setEstadoPagamento(EstadoPagamento estadoPagamento) {
-		this.estadoPagamento = estadoPagamento.getCod();
+	public void setEstado(EstadoPagamento estado) {
+		this.estado = estado.getCod();
 	}
-
 
 	public Pedido getPedido() {
 		return pedido;
 	}
 
-
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
+
 
 
 	@Override
@@ -75,6 +71,7 @@ public abstract class Pagamento implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
 
 
 	@Override
@@ -94,5 +91,4 @@ public abstract class Pagamento implements Serializable {
 		return true;
 	}
 	
-
 }

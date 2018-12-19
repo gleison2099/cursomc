@@ -38,29 +38,30 @@ public class CursomcApplication implements CommandLineRunner {
 	private CategoriaRepository categoriaRepository;
 	
 	@Autowired
-	private ProdutoRepository ProdutoRepository;
+	private ProdutoRepository produtoRepository;
 	
 	@Autowired
-	public CidadeRepository cidadeRepository;
+	private CidadeRepository cidadeRepository;
 	
 	@Autowired
-	public EstadoRepository estadoRepository;
+	private EstadoRepository estadoRepository;
 	
 	@Autowired
-	public ClienteRepository clienteRepository;
+	private ClienteRepository clienteRepository;
 	
 	@Autowired
-	public EnderecoRepository enderecoRepository;
+	private EnderecoRepository enderecoRepository;
 	
 	@Autowired
-	public PedidoRepository pedidoRepository;
+	private PedidoRepository pedidoRepository;
 	
 	@Autowired
-	public PagamentoRepository pagamentoRepository;
+	private PagamentoRepository pagamentoRepository;
 	
 	@Autowired
-	public ItemPedidoRepository itemPedidoRepository;
-
+	private ItemPedidoRepository itemPedidoRepository;
+	
+	
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
 	}
@@ -83,7 +84,7 @@ public class CursomcApplication implements CommandLineRunner {
 		
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
-		ProdutoRepository.saveAll(Arrays.asList(p1, p2, p3));
+		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
 		
 		Estado est1 = new Estado(null, "Minas Gerais");
 		Estado est2 = new Estado(null, "São Paulo"); 
@@ -105,8 +106,8 @@ public class CursomcApplication implements CommandLineRunner {
 		
 		cli1.getEnderecos().addAll(Arrays.asList(e1,e2));
 		
-		clienteRepository.saveAll(Arrays.asList(cli1));
-		enderecoRepository.saveAll(Arrays.asList(e1, e2));
+		clienteRepository.saveAll(Arrays.asList(cli1)); 
+		enderecoRepository.saveAll(Arrays.asList(e1, e2)); 
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 				
